@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <script 
+    src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js">
+    </script>
+    <script 
+    src="https://cdnjs.cloudflare.com/ajax/libs/peerjs/1.3.1/peerjs.min.js" integrity="sha512-wNUAk/IKoDcVSiKiN/0ormRTzENc9IbFdHa/BWNuLPtp2kG53TLf5dobOeCHoeafnlaSfjKAiSewS6AJspm/Iw==" crossorigin="anonymous">
+    </script>
+    
+    <script>
+        const ROOM_ID= "<%= roomId %>";
+        // alert(ROOM_ID);
+    </script>
+    <title>ZOOM</title>
+</head>
+<body>
+    <div id="overlay" onclick="hideInvitePopup()">
+        <div class="invitePopup">
+            <input type="text" value="" id="roomLink" readonly>
+            <button class="inviteBtn" onclick="copyToClipboard()">COPY</button>
+        </div>
+    </div>
+    
+    <div class="main">
+        <div class="main__left" id="main__left">
+            <!-- video-area -->
+            <div class="main__videos">
+                <div id="video-grid"></div>
+            </div>
+            <div class="main__controls">
+                <div class="main__controls_block">
+                    <div
+                    class="main__controls_button"
+                    id="muteButton"
+                    onclick="muteUnmute()">
+                    <i class="fa fa-microphone"></i>
+                    <span>Mute</span>
+                    </div>
+                    <div
+                    class="main__controls_button"
+                    id="playPauseVideo"
+                    onclick="playStop()">
+                    <i class="fa fa-video-camera"></i>
+                    <span>Pause Video</span>
+                    </div>
+                </div>
+                <div class="main__controls_block">
+                    <div class="main__controls_button"
+                    id="chat__Btn"
+                    onclick="showChat(this)">
+                    <i class="fa fa-comment"></i>
+                    <span>Chat</span>
+                    </div>
+                    <div class="main__controls_button"
+                    onclick="showInvitePopup()">
+                    <i class="fa fa-user-plus"></i>
+                    <span>Invite</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main__right" id="main__right">
+            <!-- chat-area -->
+            <div class="main__header">
+                <h6><span class="live"></span>LIVE CHAT</h6>
+            </div>
+            <div class="main__chat__window" id="main__chat__window">
+                <ul class="messages" id="all_messages"></ul>
+            </div>
+            <div class="main__message__container">
+                <input 
+                type="text"
+                id="chat_message"
+                placeholder="Type your message and hit enter"
+                />
+                <button class="sendMsg" id="sendMsg">
+                    <i class="fa fa-paper-plane send"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
