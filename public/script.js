@@ -46,6 +46,10 @@ document.addEventListener("keydown", (e) => {
     chatInputBox.value = "";
   }
 });
+function buttonAction(){
+  socket.emit("message", chatInputBox.value);
+    chatInputBox.value = "";
+}
 
 socket.on("createMessage", (msg) => {
   console.log(msg);
